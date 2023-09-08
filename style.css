@@ -13,6 +13,28 @@
 	display: none;
 }
 
+.nav-btn{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1vw;
+    z-index: 5;
+    position: fixed;
+    right: 1vw;
+    bottom: 1.5vw;
+    transition: 1.5s;
+}
+
+.nav-btn img{
+    width: 4vw;
+}
+
+.nav-btn img:hover{
+    z-index: 6;
+    scale: 1.4;
+    
+}
+
+
 nav{
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -29,13 +51,22 @@ nav img{
     justify-content: space-between;
     place-items: center;
     font-size: 1.5vw;
-    padding: 10px;
+    padding: 2vw 5vw;
 }
 
 .navlist a{
     text-decoration: none;
     color: black;
     font-family: 'Roboto', sans-serif;
+    transition: 0.6s;
+}
+
+.navlist a:hover{
+    scale: 1.5;
+    z-index: 2;
+    color: #3D377B;
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 .header{
@@ -87,7 +118,7 @@ nav img{
     width: 100%;
     aspect-ratio: 1/1;
     background-color: white;
-    padding: 5px;
+    padding: .5vw;
 }
 
 span{
