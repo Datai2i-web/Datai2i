@@ -62,7 +62,7 @@ nav img{
 }
 
 .navlist a:hover{
-    scale: 1.5;
+    scale: 1.1;
     z-index: 2;
     color: #3D377B;
     text-decoration: underline;
@@ -228,8 +228,14 @@ span{
     justify-content: center;
     text-align: center;
     margin: 2vw;
-    font-size: 4vw;
-    font-family: 'Archivo', sans-serif;
+    font-size: 2vw;
+    /* font-family: 'Archivo', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1vw; /* 45.18px */
+    letter-spacing: 1.7vw;
+    text-transform: uppercase;
 }
 
 .services{
@@ -242,7 +248,7 @@ span{
 }
 
 .services h1{
-    font-size: 3vw;
+    font-size: 2vw;
     margin: 2vw;
     font-family: 'Archivo', sans-serif;
 }
@@ -268,8 +274,10 @@ span{
 }
 
 .radial-grad{
-    background-image: radial-gradient(#4c459ba4,#4c459b86,#EFEEFF,rgba(255,255,255,0.2));
-    filter: blur(5px);
+    /* background-image: radial-gradient(#4c459ba4,#4c459b86,#EFEEFF,rgba(255,255,255,0.2));
+    filter: blur(5px); */
+    border-radius: 46px;
+    background: radial-gradient(331.64% 44.78% at 0% 41.35%, #D9D6FF 0%, rgba(217, 214, 255, 0.00) 100%);
 }
 
 .card{
@@ -285,14 +293,14 @@ span{
 }
 
 .card h2{
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     margin: 1vw 0vw;
     font-family: 'Archivo', sans-serif;
     color: #4C459B;
 }
 
 .card p{
-    font-size: 1.2vw;
+    font-size: 1vw;
     margin-bottom: 1vw;
     font-family: 'Archivo', sans-serif;
     color: rgba(0, 0, 0, 0.651);
@@ -311,13 +319,13 @@ span{
     text-align: center;
     background-color: #EFEEFF;
     font-family: 'Archivo', sans-serif;
-    font-size: 3vw;
+    font-size: 2.3vw;
     padding: 3vw 0vw 0vw 0vw;
 }
 
 .sec-3-subhead{
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.8vw;
     color: #4C459B;
     background-color: #EFEEFF;
     font-family: 'Archivo', sans-serif;
@@ -390,6 +398,7 @@ span{
 
 .proicon p{
     font-size: 1.2vw;
+    font-family: 'Archivo', sans-serif;
 }
 
 .proicon{
@@ -413,10 +422,15 @@ span{
     grid-template-columns: 2fr 4fr;
     background-color: #EFEEFF;
     padding: 2vw;
+    padding-bottom: 0.5vw;
 }
 
 .workshops img{
     width: 40vw;
+}
+
+.workshop-img{
+    aspect-ratio: 4/3;
 }
 
 .workshop-desc{
@@ -426,10 +440,11 @@ span{
 .work-card{
     padding: 2vw;
     backdrop-filter: blur(3px);
-    border: 1px solid #4C459B;
+    border: 0.px solid #4C459B;
     border-radius: 10px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    background: rgba(255, 255, 255, 0.30);
+    box-shadow: 0px 2px 34px 0px rgba(130, 130, 216, 0.25);
 }
 
 .workshop-desc img{
@@ -504,14 +519,15 @@ ul {
 
 marquee{
     background-color: #4C459B;
-    height: 8vw;
-    padding: 1vw;
+    height: 6vw;
+    /* padding: .3vw; */
     place-items: center;
 }
 
 marquee img{
     height: 6vw;
     margin: 0px 6vw;
+    padding: 1vw 0vw;
     place-items: center;
 }
 
@@ -560,6 +576,7 @@ footer img{
     width: 80%;
     height: 2.5vw;
     padding: 1.5vw;
+    font-size: 1vw;
 }
 
 
