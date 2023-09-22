@@ -1,0 +1,16 @@
+
+product_data = {
+    "title": "value1",
+    "subtitle": "value2",
+    "features": [],
+    "description": "description value",
+    "icon_heading": "icon_heading val",
+    "icons": []
+}
+
+feature_data = {
+    "image_url": "https://example.com/image.jpg",
+    "fet_description": "feature description"
+}
+
+
