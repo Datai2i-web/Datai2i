@@ -16,8 +16,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    data = db.find()
-
+    data = db.find({})
+    for i in data:
+        print(i)
     return render_template('index.html',data=data)
 
 
