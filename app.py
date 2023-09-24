@@ -16,11 +16,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    data = db.find()
 
-    return render_template('index.html',data=data)
+    return render_template('index.html')
 
-
+@app.route('/render')
+def render():
+    data = list(db.find({}))
+    for i in data:
+        print(i)
+    return render_template('render.html',data=data)
 
 # Define a route for the form page
 @app.route('/upload_data', methods=['GET'])
