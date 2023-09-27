@@ -5,19 +5,21 @@ from gridfs import GridFS
 import os
 from werkzeug.utils import secure_filename
 
-uri = "mongodb+srv://chandrakarthik42:Karthik421@cluster0.rtwqhrx.mongodb.net/?retryWrites=true&w=majority"
+# uri = "mongodb+srv://chandrakarthik42:Karthik421@cluster0.rtwqhrx.mongodb.net/?retryWrites=true&w=majority"
+uri = "mongodb+srv://datai2i-admin:EGwhDoTMIFAHqwoX@datai2i.efqtgwz.mongodb.net/?retryWrites=true&w=majority"
+
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 
-db=client.DATA2I.data2i
+db=client.data.Products
 
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-
-    return render_template('index.html')
+    data = list(db.find({}))
+    return render_template('index.html',data=data)
 
 @app.route('/render')
 def render():
