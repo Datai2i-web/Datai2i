@@ -623,9 +623,6 @@ footer img{
     display: none;
 }
 
-.mob-serv-right,.mob-service-left{
-    display: none;
-}
 
 
 @media only screen and (max-width: 450px){
@@ -748,7 +745,8 @@ footer img{
         padding: 2vw 4vw;
         text-align: center;  
         backdrop-filter: blur(10px) !important; 
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         border-radius: 5px;
     }
     
@@ -777,6 +775,7 @@ footer img{
     }
 
     .mob-serv-right{
+        
         right: 0px;
         align-items: end;
         height: 40vw;
@@ -789,7 +788,7 @@ footer img{
     .mob-service-left{
         left: 0px;
         align-items: start;
-        height: 40vw;
+        height: 36vw;
         bottom: 0;
         position: absolute;
         z-index: 0;

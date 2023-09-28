@@ -1,4 +1,4 @@
-from flask import Flask ,request, render_template 
+from flask import Flask ,request, render_template ,request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from gridfs import GridFS
@@ -16,22 +16,111 @@ db=client.data.Products
 
 app = Flask(__name__)
 
+
+
+# Configuration for file uploads
+UPLOAD_FOLDER = './media/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Initialize an empty list to store features
+features = []
+products = []
+
+
 @app.route('/')
 def index():
-    data = list(db.find({}))
-    return render_template('index.html',data=data)
+    return render_template('test.html')
 
-@app.route('/render')
-def render():
-    data = list(db.find({}))
-    for i in data:
-        print(i)
-    return render_template('render.html',data=data)
+@app.route('/admin_login')
+def login():
+    return "hello"
 
-# Define a route for the form page
-@app.route('/upload_data', methods=['GET'])
-def show_form():
-    return render_template('form.html')  # Replace 'your_template.html' with the actual template name
+
+@app.route('/save', methods=['POST'])
+def save():
+    product_title = request.form['productTitle']
+    product_name = request.form['productName']
+    image = request.files['image']
+
+    product_title = product_title.upper()
+    product = db.find_one({ "title" : product_title})
+    
+    if not(product):
+        return "Product not found"    
+    if product_name and image:
+        # Save the image to the 'media' folder
+        
+        if 'image' in request.files:
+            image_filename = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+            image.save(image_filename)
+            products = {
+                'title': product_name,
+                'imagePath': image_filename
+            }
+            
+            update_query = {"$push": {"product_features": products}}
+            db.update_one({"title": product_title}, update_query)
+
+    return redirect(url_for('index'))
+
+
+
+@app.route('/save_features', methods=['POST'])
+def feature_save():
+    product_title = request.form['productTitle']
+    feature_name = request.form['featureName']
+    image = request.files['image']
+    
+    product_title = product_title.upper()
+    product = db.find_one({ "title" : product_title})
+    
+    if not(product):
+        return "Product not found"   
+    if feature_name and image:
+        # Save the image to the 'media' folder
+        if 'image' in request.files:
+            image_filename = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+            image.save(image_filename)
+            feat = {
+                'title': feature_name,
+                'imagePath': image_filename
+            }
+
+            update_query = {"$push": {"features": feat}}
+            db.update_one({"title": product_title}, update_query)
+            print(product_title)
+    return redirect(url_for('index'))
+
+
+@app.route('/upload', methods=['POST'])
+def addProduct():
+    title = request.form['title']
+    sub_title = request.form['sub_title']
+    product_desc = request.form['product_desc']
+    
+    #  Access uploaded file using request.files
+    product_logo = request.files['product_logo']
+    # print(product_logo)
+    
+    # Save the product logo file
+    upload_folder = './media/'
+    product_logo_filename = save_uploaded_file(product_logo, upload_folder)
+    
+    product_data = {
+        'title': title.upper(),
+        'sub_title': sub_title,
+        'product_desc': product_desc,
+        'product_logo': product_logo_filename,
+        'features': [],
+        'product_features': []
+    }
+    # print(product_data)
+    # Insert the document into the MongoDB collection
+    db.insert_one(product_data)
+
+    # Redirect or render a response (you can customize this)
+    return "Product uploaded successfully!"
+
 
 def save_uploaded_file(file, upload_folder):
     filename = secure_filename(file.filename)
@@ -39,86 +128,105 @@ def save_uploaded_file(file, upload_folder):
     file.save(file_path)
     return file_path
 
-# Define a route for handling form submission
-@app.route('/upload', methods=['POST'])
-def upload_post():
-    # Access form data using request.form
-    title = request.form['title']
-    sub_title = request.form['sub_title']
-    product_desc = request.form['product_desc']
+# # Define a route for handling form submission
+# @app.route('/upload', methods=['POST'])
+# def upload_post():
+#     # Access form data using request.form
+#     title = request.form['title']
+#     sub_title = request.form['sub_title']
+#     product_desc = request.form['product_desc']
     
-    # Access uploaded file using request.files
-    product_logo = request.files['product_logo']
-    print(product_logo)
+#     # Access uploaded file using request.files
+#     product_logo = request.files['product_logo']
+#     print(product_logo)
     
-    # Save the product logo file
-    upload_folder = './media/'
-    product_logo_filename = save_uploaded_file(product_logo, upload_folder)
+#     # Save the product logo file
+#     upload_folder = './media/'
+#     product_logo_filename = save_uploaded_file(product_logo, upload_folder)
     
-    # Initialize lists to store features and product_features data
-    features = []
-    product_features = []
-    print(request.form)
-    feature_counter = 1
-    while True:
-        feature_text = request.form.get(f'features[feature_{feature_counter}][text]')
-        feature_image = request.files.get(f'features[feature_{feature_counter}][image]')
+#     # Initialize lists to store features and product_features data
+#     features = []
+#     product_features = []
+#     print(request.form)
+#     feature_counter = 1
+#     while True:
+#         feature_text = request.form.get(f'features[feature_{feature_counter}][text]')
+#         feature_image = request.files.get(f'features[feature_{feature_counter}][image]')
 
-        if not feature_text:
-            break
+#         if not feature_text:
+#             break
 
-        # Create a dictionary to store feature data
-        feature_data = {'text': feature_text}
+#         # Create a dictionary to store feature data
+#         feature_data = {'text': feature_text}
 
-        if feature_image:
-            # Handle the feature image and description here
-            feature_image_filename = save_uploaded_file(feature_image, upload_folder)
-            feature_data['image'] = feature_image_filename
+#         if feature_image:
+#             # Handle the feature image and description here
+#             feature_image_filename = save_uploaded_file(feature_image, upload_folder)
+#             feature_data['image'] = feature_image_filename
 
-        features.append(feature_data)
-        feature_counter += 1
+#         features.append(feature_data)
+#         feature_counter += 1
 
-    # Process the form data for product features
-    product_feature_counter = 1
-    while True:
-        product_feature_text = request.form.get(f'product_features[feature_{product_feature_counter}][text]')
-        product_feature_image = request.files.get(f'product_features[feature_{product_feature_counter}][image]')
+#     # Process the form data for product features
+#     product_feature_counter = 1
+#     while True:
+#         product_feature_text = request.form.get(f'product_features[feature_{product_feature_counter}][text]')
+#         product_feature_image = request.files.get(f'product_features[feature_{product_feature_counter}][image]')
 
-        if not product_feature_text:
-            break
+#         if not product_feature_text:
+#             break
 
-        # Create a dictionary to store product feature data
-        product_feature_data = {'text': product_feature_text}
+#         # Create a dictionary to store product feature data
+#         product_feature_data = {'text': product_feature_text}
 
-        if product_feature_image:
-            # Handle the product feature image and description here
-            product_feature_image_filename = save_uploaded_file(product_feature_image, upload_folder)
-            product_feature_data['image'] = product_feature_image_filename
+#         if product_feature_image:
+#             # Handle the product feature image and description here
+#             product_feature_image_filename = save_uploaded_file(product_feature_image, upload_folder)
+#             product_feature_data['image'] = product_feature_image_filename
 
-        product_features.append(product_feature_data)
-        product_feature_counter += 1
-
-
-
-    # Process the form data for product features
+#         product_features.append(product_feature_data)
+#         product_feature_counter += 1
 
 
-    # Create a document to insert into MongoDB
-    product_data = {
-        'title': title,
-        'sub_title': sub_title,
-        'product_desc': product_desc,
-        'product_logo': product_logo_filename,
-        'features': features,
-        'product_features': product_features
-    }
-    print(product_data)
-    # Insert the document into the MongoDB collection
-    db.insert_one(product_data)
 
-    # Redirect or render a response (you can customize this)
-    return "Product uploaded successfully!"
+#     # Process the form data for product features
+
+
+#     # Create a document to insert into MongoDB
+#     product_data = {
+#         'title': title,
+#         'sub_title': sub_title,
+#         'product_desc': product_desc,
+#         'product_logo': product_logo_filename,
+#         'features': features,
+#         'product_features': product_features
+#     }
+#     print(product_data)
+#     # Insert the document into the MongoDB collection
+#     db.insert_one(product_data)
+
+#     # Redirect or render a response (you can customize this)
+#     return "Product uploaded successfully!"
 
 if __name__ == '__main__':
     app.run(debug=True)
 
+
+
+# @app.route('/')
+# def index():
+#     data = list(db.find({}))
+#     return render_template('index.html',data=data)
+
+# @app.route('/render')
+# def render():
+#     data = list(db.find({}))
+#     for i in data:
+#         print(i)
+#     return render_template('render.html',data=data)
+
+
+# # Define a route for the form page
+# @app.route('/upload_data', methods=['GET'])
+# def show_form():
+#     return render_template('form.html')  # Replace 'your_template.html' with the actual template name

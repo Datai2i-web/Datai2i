@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Upload Feature</title>
+</head>
+<style>
+
+    /* Styles for the popup */
+.popup,.popups {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup-content,.popup-contents {
+    background-color: white;
+    width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+/* Style the close button */
+.close-button,.close-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+</style>
+<body>
+    <div class="nav-btn">
+        <a href="#home"><img src="../static/fet-icon (1).png" alt="" class="nav-icons"></a>
+        <a href="#"><img src="../static/exclusive (2).png" alt="" class="nav-icons"></a>
+    </div>
+    <nav>
+        <img src="../static/logo.png" alt="logo">
+        <div class="navlist">
+            <a href="#home">Home</a>
+            <a href="#service">Services</a>
+            <a href="#products">Products</a>
+            <a href="#workshop">Workshops</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </nav>
+    <!------------------------- FEATURES COMPONENT -------------------------->
+    <div class="popup" id="popupForm">
+        <div class="popup-content">
+            <span id="closeButton" class="close-button">&times;</span>
+            <h2>ADD FEATURE</h2>
+            <form action="/save_features" method="POST" enctype="multipart/form-data">
+                <!-- Your form fields go here -->
+                <label for="name">Product Title:</label>
+                <input type="text" name="productTitle" placeholder="Product Title" required> <br>
+                <label for="name">Name:</label>
+                <input type="text" name="featureName" placeholder="Feature Name"> <br>
+                <label for="Image">upload Image:</label>
+                <input type="file" name="feature_image" required><br>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <!---------------------------- PRODUCTS COMPONENT------------------------>
+    <div class="popups" id="popupForms">
+        <div class="popup-contents">
+            <span id="closeButtons" class="close-buttons">&times;</span>
+            <h2>ADD PRODUCT</h2>
+            <form action="/save" method="POST" enctype="multipart/form-data">
+                <!-- Your form fields go here -->
+                <label for="name">Product Title:</label>
+                <input type="text" name="productTitle" placeholder="Product Title" required> <br>
+                <label for="name">Name:</label>
+                <input type="text" name="productName" placeholder="Product Name" required> <br>
+                <label for="Image">upload Image:</label>
+                <input type="file" name="image" required><br>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <form action="/upload" method="post" enctype="multipart/form-data" id="postForm" style="display: block;">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="sub_title">Subtitle:</label>
+        <input type="text" id="sub_title" name="sub_title" required><br><br>
+
+        <label for="product_logo">Product Logo:</label>
+        <input type="file" id="product_logo" name="product_logo" accept="image/*"><br><br>
+
+        <label for="product_desc">Product Description:</label>
+        <textarea id="product_desc" name="product_desc" rows="4" cols="50" required></textarea><br><br>        
+
+        <input type="submit" value="Upload Post">
+    </form>
+    <!-- feature button -->
+    <button id="openButton">ADD FEATURE</button>
+    <br>
+
+
+
+
+    <!-- Product name -->
+    <button id="openButtons">ADD PRODUCT</button>
+    <br>
+
+
+    <!-- <div class="features">
+    <label for="features">features:</label>
+        <form action="/save" method="POST" enctype="multipart/form-data">
+            <input type="text" name="featureName" placeholder="Feature Name">
+            <input type="file" name="image">
+            <button type="submit">Add Feature</button>
+    </form>
+    </div> -->
+</body>
+
+<script>
+    document.getElementById("openButton").addEventListener("click", function() {
+        document.getElementById("popupForm").style.display = "block";
+    });
+    
+    document.getElementById("closeButton").addEventListener("click", function() {
+        document.getElementById("popupForm").style.display = "none";
+    });
+
+    document.getElementById("openButtons").addEventListener("click", function() {
+        document.getElementById("popupForms").style.display = "block";
+    });
+    
+    document.getElementById("closeButtons").addEventListener("click", function() {
+        document.getElementById("popupForms").style.display = "none";
+    });
+    
+</script>
+
+</html>

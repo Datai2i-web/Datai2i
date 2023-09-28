@@ -44,8 +44,9 @@
         <div id="featuresContainer">
             <div class="feature">
                 <label>Feature :</label>
-                <input type="text" name="features[feature_1][text]">
-                <input type="file" name="features[feature_1][image]" accept="image/*">
+                <input type="text" name="features[feature_1][text]" id="Fname">
+                <input type="file" name="features[feature_1][image]" accept="image/*" id="Fimg">
+                <!-- <button onclick="addfeature()">add</button> -->
             </div>
         </div>
         <button type="button" id="addFeature">+ Add Feature</button><br><br>
@@ -66,6 +67,47 @@
     <!-- Other content of your HTML -->
 
     <script>
+
+        const features = [];
+
+        function addfeature() {
+            // Get values from input fields
+            const name = document.getElementById("Fname").value;
+            const img = document.getElementById("Fimg").value;
+
+            // Create a new person object
+            const feature = {
+                name: name,
+                img: img
+            };
+
+            // Add the person object to the people array
+            features.push(feature);
+
+            // Clear input fields
+            document.getElementById("Fname").value = "";
+            document.getElementById("Fimg").value = "";
+
+            // Update the list of people
+            updatePeopleList();
+            console.log(features);
+        }
+
+        function updatePeopleList() {
+            const peopleList = document.getElementById("peopleList");
+
+            // Clear the existing list
+            peopleList.innerHTML = "";
+
+            // Iterate through the people array and create list items
+            for (const person of people) {
+                const listItem = document.createElement("li");
+                listItem.textContent = `Name: ${person.name}, Age: ${person.age}`;
+                peopleList.appendChild(listItem);
+            }
+        }
+
+
 
     // JavaScript code to clone and append feature fields
     let featureCounter = 1;
