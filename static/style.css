@@ -869,6 +869,140 @@ footer img{
         font-size: 2vw;
     }
 
+    .mob-workshop{
+        text-align: center;
+        background-color: #EFEEFF;
+    }
+
+
+    .mob-workshop h2{
+        text-align: center;
+        background-color: #EFEEFF;
+        font-family: 'Archivo', sans-serif;
+        font-size: 4.5vw;
+        padding: 3vw 0vw 0vw 0vw;
+    }
+
+    .mob-workshop h4{
+        text-align: center;
+        font-size: 2.5vw;
+        color: #4C459B;
+        background-color: #EFEEFF;
+        font-family: 'Archivo', sans-serif;
+        padding: 1vw;
+    }
+
+    .workshops {
+        display: grid;
+        grid-template-columns: 1fr;
+        background-color: #EFEEFF;
+        padding: 5vw;
+        justify-content: center;
+        padding-bottom: 0.5vw;
+    }
+
+    .work-card {
+        padding: 3vw;
+        backdrop-filter: blur(3px);
+        border: 0.px solid #4C459B;
+        border-radius: 10px;
+        color: #4C459B;
+        /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+        background: rgba(255, 255, 255, 0.30);
+        box-shadow: 0px 2px 34px 0px rgba(130, 130, 216, 0.25);
+    }
+
+    .work-card p {
+        font-size: 2vw;
+        font-family: 'Archivo', sans-serif;
+    }
+
+    .work-card ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5vw;
+        font-family: 'Archivo', sans-serif;
+        font-size: 2vw;
+        justify-content: space-between;
+        padding: 2vw;
+        color: #4C459B;
+    }
+
+    .exclusive-for {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        place-items: center;
+        place-items: center;
+    }
+
+    .exclusive-for h2{
+        font-size: 3vw;
+    }
+
+    .mob-marque-h2{
+        text-align: center;
+        background-color: #EFEEFF;
+        font-family: 'Archivo', sans-serif;
+        font-size: 4.5vw;
+        padding: 3vw 0vw 0vw 0vw;
+    }
+    
+    marquee {
+        background-color: #4C459B;
+        height: 8vw;
+        /* padding: 0.3vw; */
+        place-items: center;
+    }
+
+    marquee img {
+        height: 8vw;
+        margin: 0px 6vw;
+        padding: 1vw 0vw;
+        place-items: center;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        text-align: center;
+    }
+
+    .links h1, .contact-det h1, .social-media h1 {
+        font-size: 4vw;
+        font-family: 'Archivo', sans-serif;
+    }
+
+    .nav-links a, .contact-det a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Archivo', sans-serif;
+        font-size: 2.5vw;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0vw 10vw;
+        gap: 1vw;
+    }
+
+    .contact-form input {
+        width: 80%;
+        height: 2.5vw;
+        padding: 1.5vw;
+        font-size: 2vw;
+    }
+
+    .contact-form button {
+        width: 30%;
+        height: 5vw;
+        background-color: #3D377B;
+        color: white;
+        border-radius: 10px;
+        font-size: 3vw;
+    }
 }
 
 

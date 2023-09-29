@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 
 # Configuration for file uploads
-UPLOAD_FOLDER = './media/'
+UPLOAD_FOLDER = './static/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Initialize an empty list to store features
@@ -29,7 +29,15 @@ products = []
 
 @app.route('/')
 def index():
+    data = list(db.find({}))
+    return render_template('index.html', data=data)
+    # return render_template('index.html')
+
+
+@app.route('/admin')
+def admin():
     return render_template('test.html')
+
 
 @app.route('/admin_login')
 def login():
@@ -55,13 +63,13 @@ def save():
             image.save(image_filename)
             products = {
                 'title': product_name,
-                'imagePath': image_filename
+                'imagePath': "." + image_filename
             }
             
             update_query = {"$push": {"product_features": products}}
             db.update_one({"title": product_title}, update_query)
 
-    return redirect(url_for('index'))
+    return redirect('/admin')
 
 
 
@@ -69,27 +77,27 @@ def save():
 def feature_save():
     product_title = request.form['productTitle']
     feature_name = request.form['featureName']
-    image = request.files['image']
-    
+    fimage = request.files['image']
+     
     product_title = product_title.upper()
     product = db.find_one({ "title" : product_title})
     
     if not(product):
         return "Product not found"   
-    if feature_name and image:
+    if feature_name and fimage:
         # Save the image to the 'media' folder
         if 'image' in request.files:
-            image_filename = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-            image.save(image_filename)
+            image_filename = os.path.join(app.config['UPLOAD_FOLDER'], fimage.filename)
+            fimage.save(image_filename)
             feat = {
                 'title': feature_name,
-                'imagePath': image_filename
+                'imagePath': "." + image_filename
             }
 
             update_query = {"$push": {"features": feat}}
             db.update_one({"title": product_title}, update_query)
             print(product_title)
-    return redirect(url_for('index'))
+    return redirect('/admin')
 
 
 @app.route('/upload', methods=['POST'])
@@ -103,14 +111,14 @@ def addProduct():
     # print(product_logo)
     
     # Save the product logo file
-    upload_folder = './media/'
+    upload_folder = './static/'
     product_logo_filename = save_uploaded_file(product_logo, upload_folder)
     
     product_data = {
         'title': title.upper(),
         'sub_title': sub_title,
         'product_desc': product_desc,
-        'product_logo': product_logo_filename,
+        'product_logo': "." + product_logo_filename,
         'features': [],
         'product_features': []
     }
