@@ -50,6 +50,7 @@ def admin():
     if user['password'] != pwd :
         return "Invalid password"
     return render_template('test.html')
+  
     
 
 
@@ -78,7 +79,8 @@ def save():
             update_query = {"$push": {"product_features": products}}
             db.update_one({"title": product_title}, update_query)
 
-    return redirect('/admin')
+    # return redirect('/admin')
+    return render_template('sucess.html')
 
 
 
@@ -106,7 +108,8 @@ def feature_save():
             update_query = {"$push": {"features": feat}}
             db.update_one({"title": product_title}, update_query)
             print(product_title)
-    return redirect('/admin')
+    # return redirect('/admin')
+    return render_template('sucess.html')
 
 
 @app.route('/upload', methods=['POST'])
