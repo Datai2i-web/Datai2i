@@ -88,68 +88,44 @@
             </div>
             <img src="../static/left.png" class="service-left-back" alt="">
         </div>
-        <swiper-container class="mySwiper" id="products" style="background-color:  #EFEEFF;" pagination="true" navigation="true">
-           {% for i in data %}
+        <swiper-container class="mySwiper" id="products" style="background-color:#EFEEFF;" pagination="true" navigation="true">
+            {% for i in data %}
             <swiper-slide>
                 <h1 class="sec-3-head">{{ i.title }}</h1>
-                <h2 class="sec-3-subhead"> {{ i.sub_title }} </h2>
+                <h2 class="sec-3-subhead">{{ i.sub_title }}</h2>
                 <div class="sec3" id="products">
                     <div class="fet-left">
+                        {% set x = i.features %}
+                        {% for j in range(0,(x|length)//2) %}
                         <div class="fet">
-                            <img src="../static/fet-icon (1).png" alt="">
-                            <p>Receive a quantified digital transformation scorecard.</p>
+                            <img src="{{i.features[j].imagePath}}" alt="">
+                            <p>{{i.features[j].title }}</p>
                         </div>
-                        <div class="fet">
-                            <img src="../static/fet-icon (2).png" alt="">
-                            <p>Gain insights into strengths, weaknesses, and improvement areas.</p>
-                        </div>
-                        <div class="fet">
-                            <img src="../static/fet-icon (3).png" alt="">
-                            <p>Understand industry trends and competitor practices.</p>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="fet-img">
-                        <img src="{{ i.product_logo }}" alt="products-icons">
+                        <img src="{{i.product_logo}}" alt="products-icons">
                     </div>
                     <div class="fet-right">
+                        {% set x = i.features %}
+                        {% for j in range((x|length)//2, x|length ) %}
                         <div class="fet">
-                            <img src="../static/fet-icons (1).png" alt="">
-                            <p>Data-driven decisions for enhanced performance</p>
+                            <img src="{{i.features[j].imagePath}}" alt="">
+                            <p>{{i.features[j].title }}</p>
                         </div>
-                        <div class="fet">
-                            <img src="../static/fet-icons (2).png" alt="">
-                            <p>Strategic initiatives for better ROI</p>
-                        </div>
-                        <div class="fet">
-                            <img src="../static/fet-icons (3).png" alt="">
-                            <p>Stay competitive in the digital era</p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <p class="sec-3-des"> {{ i.product_desc }} </p>
+                <p class="sec-3-des">{{ i.product_desc }} </p>
                 <div class="sec4">
                     <!-- <h3>Di2i in Action</h3> -->
                     <div class="products">
+                        {% for j in i.product_features %}
                         <div class="proicon">
-                            <img src="../static/product-icon.png" alt="">
-                            <p>Information Gathering</p>
+                            <img src="{{ j.imagePath }}" alt="">
+                            <p>{{j.title}}</p>
                         </div>
-                        <div class="proicon">
-                            <img src="../static/product-icon (1).png" alt="">
-                            <p>Technology Analysis</p>
-                        </div>
-                        <div class="proicon">
-                            <img src="../static/product-icon (2).png" alt="">
-                            <p>Data Insights</p>
-                        </div>
-                        <div class="proicon">
-                            <img src="../static/product-icon (3).png" alt="">
-                            <p>Engagement Assessment</p>
-                        </div>
-                        <div class="proicon">
-                            <img src="../static/product-icon (4).png" alt="">
-                            <p>Results & Suggestions</p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </swiper-slide>
@@ -237,9 +213,9 @@
                         <li>Data Collection and Preprocessing</li>
                         <li>Machine Learning Foundations</li>
                         <li>Deep Learning and Neural Networks</li>
-                        <li>Feature Engineering and Model Evaluation</li>
                         <li>Hands-On Projects and Case Studies</li>
                         <li>Future Trends and Industry Insights</li>
+                        <li>Feature Engineering and Model  <pre>  Evaluation</pre></li>
                     </ul>
                 </div>
                 <div class="exclusive-for">
@@ -250,11 +226,11 @@
                     </div>
                     <div>
                         <img src="../static/exclusive (2).png" alt="">
-                        <p>Students</p>
+                        <p>Institutions</p>
                     </div>
                     <div>
                         <img src="../static/exclusive (3).png" alt="">
-                        <p>Students</p>
+                        <p>Professionals</p>
                     </div>
 
                 </div>
@@ -293,7 +269,10 @@
             <div class="social-media">
                 <h1>Social Media</h1>
                 <div class="social-icon">
-
+                        <img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/46-facebook-512.png" alt="">
+                        <img src="https://www.transparentpng.com/thumb/logo-instagram/mrG45j-instagram-black-logo-free-download.png" alt="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/39/39552.png" alt="">
+                        <img src="https://www.pngmart.com/files/21/Linkedin-In-Logo-PNG-HD.png" alt="">
                 </div>
             </div>
         </footer>
@@ -309,17 +288,17 @@
                 onclick="toggleNav()">menu</span>
         </nav>
         <ul class="mob-nav hidden">
-            <a class="mn" href="#home">Home</a>
-            <a class="mn" href="#service">Services</a>
-            <a class="mn" href="#products">Products</a>
-            <a class="mn" href="#workshop">Workshops</a>
-            <a class="mn" href="#contact">Contact</a>
+            <a class="mn mob-nav" href="#mob-home">Home</a>
+            <a class="mn mob-nav" href="#mob-service">Services</a>
+            <a class="mn mob-nav" href="#mob-products">Products</a>
+            <a class="mn mob-nav" href="#mob-workshop">Workshops</a>
+            <a class="mn mob-nav" href="#mob-contact">Contact</a>
         </ul>
 
-        <div class="home" id="home">
+        <div class="home" id="mob-home">
             <p class="ban-heading"><b>Empowering Industries with<br> &nbsp;<span class="typewriter"></span></b></p>
             <img src="../static/mob-home-ban.png" alt="">
-            <p class="ban-heading">DATAi2i unlocks data's potential with industry leading expertise in AI and data
+            <p class="ban-heading ban-sub">DATAi2i unlocks data's potential with industry leading expertise in AI and data
                 science.</p>
             <div class="contact-btn">
                 <p>contact us</p>
@@ -329,7 +308,7 @@
         <div class="impact">
             <h1>INFORMATION TO IMPACT</h1>
         </div>
-        <div class="mob-serv">
+        <div class="mob-serv" id="mob-service">
         <div class="mobile-service">
             <center>
                 <h1>OUR SERVICE</h1>
@@ -372,56 +351,36 @@
             <img src="../static/left.png" class="mob-service-left" alt="">
         </div>
         </div>
-        <div class="mob-feat">
+        <div class="mob-feat" id="mob-products">
             <swiper-container class="mySwiper" style="background-color:  #EFEEFF;" pagination="true" navigation="true">
+                {% for i in data %}
                 <swiper-slide class="mob-feature">   
-                    <h1>title</h1>
-                    <h3>sub_title</h3>
-                    <img src="../static/products-icon.png" alt="" >
+                    <h1>{{ i.title }}</h1>
+                    <h3>{{ i.sub_title }} </h3>
+                    <img src="{{i.product_logo}}" alt="" >
                     <div class="mob-feat-product-list">
                         <div class="mob-feat-list">
+                            {% for j in i.features  %}
                             <div class="mob-fet">
-                                <img src="../static/fet-icon (1).png" alt="">
-                                <p>Receive a quantified digital transformation scorecard.</p>
+                                <img src="{{j.imagePath}}" alt="">
+                                <p>{{ j.title }}</p>
                             </div>
-                            <div class="mob-fet">
-                                <img src="../static/fet-icon (1).png" alt="">
-                                <p>Receive a quantified digital transformation scorecard.</p>
-                            </div>
-                            <div class="mob-fet">
-                                <img src="../static/fet-icon (1).png" alt="">
-                                <p>Receive a quantified digital transformation scorecard.</p>
-                            </div>
-                            <div class="mob-fet">
-                                <img src="../static/fet-icon (1).png" alt="">
-                                <p>Receive a quantified digital transformation scorecard.</p>
-                            </div>
-                            <div class="mob-fet">
-                                <img src="../static/fet-icon (1).png" alt="">
-                                <p>Receive a quantified digital transformation scorecard.</p>
-                            </div>
+                            {% endfor %}
                         </div>
                         <div class="mob-prod-list">
+                            {% for j in i.product_features %}
                             <div class="mob-prod-icon">
-                                <img src="../static/product-icon.png" alt="">
-                                <p>Information Gathering</p>
+                                <img src="{{ j.imagePath }}" alt="">
+                                <p>{{ j.title}}</p>
                             </div>
-                            <div class="mob-prod-icon">
-                                <img src="../static/product-icon.png" alt="">
-                                <p>Information Gathering</p>
-                            </div><div class="mob-prod-icon">
-                                <img src="../static/product-icon.png" alt="">
-                                <p>Information Gathering</p>
-                            </div><div class="mob-prod-icon">
-                                <img src="../static/product-icon.png" alt="">
-                                <p>Information Gathering</p>
-                            </div>
+                            {%endfor %}
                         </div>
                     </div>
                 </swiper-slide>
+                {% endfor %}
             </swiper-container>
         </div>
-        <div class="mob-workshop">
+        <div class="mob-workshop" id="mob-workshop">
             <h2>WORKSHOPS</h2>
             <h4>DATAi2i empowers with tailored Data Science and AI workshops.</h4>
             <div class="workshops" id="workshop">
@@ -438,9 +397,9 @@
                             <li>Data Collection and Preprocessing</li>
                             <li>Machine Learning Foundations</li>
                             <li>Deep Learning and Neural Networks</li>
-                            <li>Feature Engineering and Model Evaluation</li>
                             <li>Hands-On Projects and Case Studies</li>
                             <li>Future Trends and Industry Insights</li>
+                            <li>Feature Engineering and Model  <pre>  Evaluation</pre></li>
                         </ul>
                     </div>
                     <div class="exclusive-for">
@@ -451,11 +410,11 @@
                         </div>
                         <div>
                             <img src="../static/exclusive (2).png" alt="">
-                            <p>Students</p>
+                            <p>Institutions</p>
                         </div>
                         <div>
                             <img src="../static/exclusive (3).png" alt="">
-                            <p>Students</p>
+                            <p>Professionals</p>
                         </div>
     
                     </div>
@@ -471,15 +430,15 @@
                 <img src="../static/scroll (4).png" alt="partner-4">
             </marquee>
         </div>
-        <footer id="contact" class="mob-foot">
+        <footer id="mob-contact" class="mob-foot">
             <div class="mob-foot-left">
                 <img src="../static/logo.png" alt="">
                     <div class="links">
                         <h1>Learn More</h1>
-                        <a href="#service">services</a>
-                        <a href="#products">products</a>
-                        <a href="#workshop">Workshops</a>
-                        <a href="#contact">Clients</a>
+                        <a href="#mob-service">services</a>
+                        <a href="#mob-products">products</a>
+                        <a href="#mob-workshop">Workshops</a>
+                        <a href="#mob-contact">Clients</a>
                     </div>  
             </div>
             <div class="mob-foot-right">
@@ -498,10 +457,10 @@
         <div class="social-media">
             <h1>Social Media</h1>
             <div class="social-icon">
-                <img src="../static/bxl-facebook.png" alt="">
-                <img src="../static/instagram-logo.png" alt="">
-                <img src="../static/bxl-twitter.png" alt="">
-                <img src="../static/youtube-logo.png" alt="">
+                <img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/46-facebook-512.png" alt="">
+                <img src="https://www.transparentpng.com/thumb/logo-instagram/mrG45j-instagram-black-logo-free-download.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/512/39/39552.png" alt="">
+                <img src="https://www.pngmart.com/files/21/Linkedin-In-Logo-PNG-HD.png" alt="">
             </div>
         </div>
     </div>   <!--- mobile div closing tag --->

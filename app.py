@@ -12,7 +12,7 @@ uri = "mongodb+srv://datai2i-admin:EGwhDoTMIFAHqwoX@datai2i.efqtgwz.mongodb.net/
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 db=client.data.Products
-
+admindb = client.data.Admin
 
 app = Flask(__name__)
 
@@ -34,17 +34,26 @@ def index():
     # return render_template('index.html')
 
 
-@app.route('/admin')
+@app.route('/signin')
+def adminSignin():
+    return render_template('signin.html')
+
+@app.route('/admin',methods=['POST'])
 def admin():
+    uname = request.form['uname']
+    pwd = request.form['pwd']
+    user = admindb.find_one({ "id" : uname })
+    
+    
+    if not user :
+        return "No such user"
+    if user['password'] != pwd :
+        return "Invalid password"
     return render_template('test.html')
+    
 
 
-@app.route('/admin_login')
-def login():
-    return "hello"
-
-
-@app.route('/save', methods=['POST'])
+@app.route('/save', methods=['POST','GET'])
 def save():
     product_title = request.form['productTitle']
     product_name = request.form['productName']
@@ -73,7 +82,7 @@ def save():
 
 
 
-@app.route('/save_features', methods=['POST'])
+@app.route('/save_features', methods=['POST','GET'])
 def feature_save():
     product_title = request.form['productTitle']
     feature_name = request.form['featureName']
