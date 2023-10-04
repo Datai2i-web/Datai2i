@@ -8,20 +8,32 @@
 </head>
 <style>
 
-    /* Styles for the popup */
+.add{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 2vw;
+    padding: 0vw 10vw;
+    text-align: left;
+    font-weight: 800;
+}
+
+
+    
 .popup,.popups {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 99vw;
+    height: 99vh;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 .popup-content,.popup-contents {
     background-color: white;
-    width: 500px;
+    width: 50vw;
     margin: 100px auto;
     padding: 20px;
     border-radius: 5px;
@@ -89,7 +101,7 @@
             </form>
         </div>
     </div>
-
+    <div class="add">
     <form action="/upload" method="post" enctype="multipart/form-data" id="postForm" style="display: block;">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required><br><br>
@@ -105,15 +117,17 @@
 
         <input type="submit" value="Upload Post">
     </form>
+    </div>
     <!-- feature button -->
-    <button id="openButton">ADD FEATURE</button>
+    <center><button id="openButton">ADD FEATURE</button></center>
     <br>
+    
 
 
 
 
     <!-- Product name -->
-    <button id="openButtons">EXTRA FEATURES</button>
+    <center><button id="openButtons">EXTRA FEATURES</button></center>
     <br>
 
 

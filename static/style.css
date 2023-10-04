@@ -637,6 +637,43 @@ footer img{
     background: none;
 }
 
+/* -------------------------------about section style----------------------------- */
+
+.abt-head{
+    background-image: url('../static/aboutbg.svg');
+    background-size: cover;
+    right: 0;
+    left: 0;
+    height: 35vw;
+    display: flex;
+    justify-content: right;
+    padding: 9vw;
+    padding-right: 15vw;
+}
+
+.abt-sec{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #4C459B;
+    text-align: center;
+    padding: 2vw 0vw;
+}
+
+.abt-sec-text{
+    padding: 0vw 15vw;
+    padding-top: 8vw;
+}
+
+.abt-sec-text-btm{
+    padding: 0vw 15vw;
+    padding-bottom: 8vw;
+}
+
+
+
+
 
 @media only screen and (max-width: 450px){
     .desktop{

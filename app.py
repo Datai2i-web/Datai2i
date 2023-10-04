@@ -17,7 +17,6 @@ admindb = client.data.Admin
 app = Flask(__name__)
 
 
-
 # Configuration for file uploads
 UPLOAD_FOLDER = './static/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -43,17 +42,14 @@ def admin():
     uname = request.form['uname']
     pwd = request.form['pwd']
     user = admindb.find_one({ "id" : uname })
-    
-    
     if not user :
         return "No such user"
     if user['password'] != pwd :
         return "Invalid password"
     return render_template('test.html')
+    
   
     
-
-
 @app.route('/save', methods=['POST','GET'])
 def save():
     product_title = request.form['productTitle']
@@ -80,7 +76,7 @@ def save():
             db.update_one({"title": product_title}, update_query)
 
     # return redirect('/admin')
-    return render_template('sucess.html')
+    return render_template('test.html')
 
 
 
@@ -109,7 +105,7 @@ def feature_save():
             db.update_one({"title": product_title}, update_query)
             print(product_title)
     # return redirect('/admin')
-    return render_template('sucess.html')
+    return render_template('test.html')
 
 
 @app.route('/upload', methods=['POST'])
