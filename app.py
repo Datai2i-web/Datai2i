@@ -31,8 +31,7 @@ def index():
     data = list(db.find({}))
     return render_template('index.html', data=data)
     # return render_template('index.html')
-
-
+    
 @app.route('/signin')
 def adminSignin():
     return render_template('signin.html')
