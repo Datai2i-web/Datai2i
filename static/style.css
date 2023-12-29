@@ -200,6 +200,7 @@ span{
 span.para{
     color: #00C2FF;
     font-weight: 400;
+    font-size: 1.5vw;
 }
 span.address{
     color: #000000;
@@ -294,7 +295,7 @@ span.address{
     height: 16vw;
     bottom: 0;
     position: absolute;
-    z-index: 0;
+    z-index: 10p;
 }
 
 .sec-3-head{
