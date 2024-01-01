@@ -710,12 +710,24 @@ footer img{
         gap: 4vw;
     }
 
-    .ban-heading{
+    .ban-heading {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         text-align: center;
-        margin: 3vw;
+        margin: 0vw;
         font-size: 5vw;
+        align-content: flex-end;
+        align-items: baseline;
+        flex-wrap: wrap;
+        padding-top: 20v;
+    }
+    .paramob {
+        color: #00C2FF;
+        font-weight: 400;
+        font-size: 4vw;
+        font-family: 'Archivo', sans-serif;
+        margin: -1vw;
+        padding-top: 2vw;
     }
 
     .ban-sub{
@@ -743,8 +755,10 @@ footer img{
         background: none;
         font-size: 3.5vw;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: column;
+        align-items: flex-end;
+        align-content: flex-end;
     }
     
     .contact-btn img{
@@ -752,7 +766,7 @@ footer img{
         background-color: white;
         color: black;
         padding: .5vw;
-        border-radius: 5px;
+        border-radius: px;
     }
 
     .impact h1{
@@ -1075,6 +1089,7 @@ footer img{
         font-size: 3vw;
     }
 
+
     .contact-det{
         gap: 2vw;
         padding: 3vw;
@@ -1091,6 +1106,10 @@ footer img{
         height: 2.5vw;
         /* padding: 1.5vw; */
         font-size: 2vw;
+    }
+    .adressmob{
+        font-family: 'Archivo', sans-serif;
+        font-size: 2.5vw;
     }
 
     .contact-form button {
