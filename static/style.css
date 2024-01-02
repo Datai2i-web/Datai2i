@@ -1055,11 +1055,11 @@ footer img{
 
     .mob-foot{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 1vw;
         text-align: left;
         padding: 0vw 8vw;
-    }
+        }
 
     .mob-foot-left{
         display: flex;
@@ -1069,7 +1069,8 @@ footer img{
     }
 
     .mob-foot-left img{
-        width: 30vw;
+        width: 42vw;
+        margin: -5vw;
         display: flex;
         justify-content: left;
         text-align: left;
@@ -1098,7 +1099,7 @@ footer img{
     .contact-form {
         width: 90%;
         padding: 0vw 3vw;
-        gap: 1vw;
+        gap: 10vw;
     }
 
     .contact-form input {
