@@ -216,7 +216,7 @@ span.address{
     font-style: normal;
     font-weight: 600;
     line-height: 1vw; /* 45.18px */
-    letter-spacing: 1vw;
+    letter-spacing: 0.8vw;
     text-transform: uppercase;
 }
 
@@ -771,11 +771,11 @@ footer img{
 
     .impact h1{
         text-align: center;
-        font-size: 3vw;
+        font-size: 2vw;
         font-family: 'Roboto', sans-serif;
-        letter-spacing: 1.5vw;
-        word-spacing: 2vw;  
-        padding: 2vw 1vw;
+        letter-spacing: 0.2vw;
+        word-spacing: 1vw;  
+        padding: 0.5vw 1vw;
     }
 
     .mobile-service{
