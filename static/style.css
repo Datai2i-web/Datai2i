@@ -216,8 +216,9 @@ span.address{
     font-style: normal;
     font-weight: 600;
     line-height: 1vw; /* 45.18px */
-    letter-spacing: 0.8vw;
+    letter-spacing: 0vw;
     text-transform: uppercase;
+    word-spacing: 0vw;
 }
 
 .services{
